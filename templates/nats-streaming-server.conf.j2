@@ -18,6 +18,10 @@ streaming: {
         max_channels: {{ nats_streaming_store_limits_max_channels }}
         # Maximum number of subscriptions per channel
         max_subs: {{ nats_streaming_store_limits_max_subs }}
+        # Maximum number of messages per channel
+        max_msgs: {{ nats_streaming_store_limits_max_msgs }}
+        # Total size of messages per channel
+        max_bytes: {{ nats_streaming_store_limits_max_bytes }}
         # How long messages can stay in the log
         max_age: {{ nats_streaming_store_limits_max_age }}
         # How long without any subscription and any new message before a channel can be automatically deleted

@@ -6,6 +6,8 @@ nats_streaming_nats_server_url: "nats://nats.service.consul:4222"
 
 nats_streaming_store_limits_max_channels: 100
 nats_streaming_store_limits_max_subs: 200
+nats_streaming_store_limits_max_msgs: 1000000
+nats_streaming_store_limits_max_bytes: "1GB"
 nats_streaming_store_limits_max_age: "48h"
 nats_streaming_store_limits_max_inactivity: "72h"
 
