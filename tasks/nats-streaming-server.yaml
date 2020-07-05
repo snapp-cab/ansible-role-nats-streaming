@@ -1,0 +1,54 @@
+- name: Check if NATS Streaming Package is installed
+  shell: "dpkg-query -W -f='${Version}' nats-streaming-server | grep {{ nats_streaming_version }}"
+  register: is_installed
+  check_mode: no
+  failed_when: no
+  changed_when: no
+
+- name: Install NATS Streaming package from the GitHub.
+  apt:
+    state: present
+    deb: "https://github.com/nats-io/nats-streaming-server/releases/download/v{{ nats_streaming_version }}/nats-streaming-server-v{{ nats_streaming_version }}-amd64.deb"
+  when: is_installed.rc == 1
+
+- name: Create a directory for NATS Streaming
+  file:
+    path: /var/lib/nats-streaming
+    state: directory
+    mode: '0755'
+
+- name: Ensure NATS Streaming service file is available.
+  template:
+    src: nats-streaming-server.service.j2
+    dest: /etc/systemd/system/nats-streaming-server.service
+    mode: 0644
+    backup: yes
+  register: nats_streaming_server_service_template
+
+- name: Reload systemd after adding NATS Streaming service.
+  systemd:
+    state: stopped
+    daemon_reload: true
+    name: "nats-streaming-server"
+  when: nats_streaming_server_service_template.changed
+
+- name: Ensure NATS Streaming service is started and enabled on boot.
+  service:
+    name: nats-streaming-server
+    state: started
+    enabled: true
+
+- name: Create or update NATS Streaming configuration file (/etc/nats-streaming-server.conf)
+  template:
+    src: nats-streaming-server.conf.j2
+    dest: /etc/nats-streaming-server.conf
+    mode: 0644
+    backup: yes
+  register: nats_streaming_server_conf_template
+
+- name: Reload NATS Streaming service when its configuration changed
+  debug:
+    msg: "Reload NATS Streaming service when its configuration changed"
+  when: nats_streaming_server_conf_template.changed
+  notify:
+    - reload nats-streaming-server

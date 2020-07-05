@@ -1,0 +1,10 @@
+---
+- name: restart nats-streaming-server
+  service:
+    name: nats-streaming-server
+    state: restarted
+
+- name: reload nats-streaming-server
+  service:
+    name: nats-streaming-server
+    state: reloaded

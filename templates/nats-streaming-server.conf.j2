@@ -1,0 +1,61 @@
+# {{ ansible_managed }}
+
+streaming: {
+    # Cluster name
+    cluster_id: {{ nats_streaming_cluster_id }}
+
+    # Store type
+    store: file
+    # When using a file store, this is the root directory
+    dir: /var/lib/nats-streaming/nats-streaming-data
+
+    # If specified, connects to an external NATS Server, otherwise starts an embedded one
+    nats_server_url: {{ nats_streaming_nats_server_url }}
+
+    # Store Limits
+    store_limits: {
+        # Maximum number of channels
+        max_channels: {{ nats_streaming_store_limits_max_channels }}
+        # Maximum number of subscriptions per channel
+        max_subs: {{ nats_streaming_store_limits_max_subs }}
+        # How long messages can stay in the log
+        max_age: {{ nats_streaming_store_limits_max_age }}
+        # How long without any subscription and any new message before a channel can be automatically deleted
+        max_inactivity: {{ nats_streaming_store_limits_max_inactivity }}
+    }
+
+    # File Store specific options
+    file_options: {
+        # Size of buffers that can be used to buffer write operations
+        buffer_size: {{ nats_streaming_file_options_buffer_size }}
+        # When the server starts, the recovery of channels (directories) is done sequentially.
+        parallel_recovery: {{ nats_streaming_file_options_parallel_recovery }}
+        # Size of buffers used to read ahead from message stores.
+        # This can significantly speed up sending messages to consumers after messages have been published.
+        read_buffer_size: {{ nats_streaming_file_options_read_buffer_size }}
+        # Interval at which the store should be automatically flushed and sync'ed on disk.
+        auto_sync: "{{ nats_streaming_file_options_auto_sync }}"
+    }
+
+    # Cluster Configuration
+    cluster: {
+        # ID of the node within the cluster if there is no stored ID
+        node_id: "{{ nats_streaming_cluster_node_id }}"
+        # List of cluster peer node IDs to bootstrap cluster state
+        peers: [
+{% for node in groups[nats_streaming_host_group] -%}
+    {% if hostvars[node].ansible_hostname == ansible_hostname %}
+    {% else %}
+            "{{ hostvars[node].ansible_hostname }}"
+    {% endif %}
+{% endfor %}
+        ]
+
+        # Directory to store log replication data
+        log_path: "/var/lib/nats-streaming/nats-streaming-replication-data"
+        # Number of log entries to cache in memory to reduce disk IO
+        log_cache_size: {{ nats_streaming_cluster_log_cache_size }}
+        # Do a file sync after every write to the replication log and message store
+        sync: {{ nats_streaming_cluster_sync | lower }}
+    }
+}

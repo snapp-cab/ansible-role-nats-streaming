@@ -1,0 +1,16 @@
+# {{ ansible_managed }}
+
+[Unit]
+Description="NATS Streaming Server"
+After=network.target
+
+[Service]
+Type=simple
+RestartSec=5s
+Restart=on-failure
+ExecStop=/bin/kill -s SIGINT $MAINPID
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStart=/usr/local/bin/nats-streaming-server --stan_config /etc/nats-streaming-server.conf
+
+[Install]
+WantedBy=multi-user.target
