@@ -1,3 +1,4 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
 streaming: {
@@ -26,6 +27,19 @@ streaming: {
         max_age: {{ nats_streaming_store_limits_max_age }}
         # How long without any subscription and any new message before a channel can be automatically deleted
         max_inactivity: {{ nats_streaming_store_limits_max_inactivity }}
+        {% if nats_streaming_store_limits_channels %}
+        channels: {
+        {% for channel, store_limit in nats_streaming_store_limits_channels.iteritems() %}
+           "{{ channel }}": {
+               max_subs: {{ store_limit.max_subs | default(omit) }}
+               max_msgs: {{ store_limit.max_msgs | default(omit) }}
+               max_bytes: {{ store_limit.max_bytes | default(omit) }}
+               max_age: {{ store_limit.max_age | default(omit) }}
+               max_inactivity: {{ store_limit.max_inactivity | default(omit) }}
+           }
+        {% endfor %}
+        }
+        {% endif %}
     }
 
     # File Store specific options
