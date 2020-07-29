@@ -61,12 +61,12 @@ streaming: {
         node_id: "{{ nats_streaming_cluster_node_id }}"
         # List of cluster peer node IDs to bootstrap cluster state
         peers: [
-{% for node in groups[nats_streaming_host_group] -%}
-    {% if hostvars[node].ansible_hostname == ansible_hostname %}
-    {% else %}
-            "{{ hostvars[node].ansible_hostname }}"
-    {% endif %}
-{% endfor %}
+        {% for node in groups[nats_streaming_host_group] %}
+        {% if hostvars[node].ansible_hostname == ansible_hostname %}
+        {% else %}
+           "{{ hostvars[node].ansible_hostname }}"
+        {% endif %}
+        {% endfor %}
         ]
 
         # Directory to store log replication data
