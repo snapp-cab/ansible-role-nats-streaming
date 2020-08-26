@@ -46,9 +46,9 @@
     backup: yes
   register: nats_streaming_server_conf_template
 
-- name: Reload NATS Streaming service when its configuration changed
+- name: Restart NATS Streaming service when its configuration changed
   debug:
     msg: "Reload NATS Streaming service when its configuration changed"
   when: nats_streaming_server_conf_template.changed
   notify:
-    - reload nats-streaming-server
+    - restart nats-streaming-server
