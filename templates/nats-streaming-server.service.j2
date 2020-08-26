@@ -10,7 +10,7 @@ RestartSec=5s
 Restart=on-failure
 ExecStop=/bin/kill -s SIGINT $MAINPID
 ExecReload=/bin/kill -s HUP $MAINPID
-ExecStart=/usr/local/bin/nats-streaming-server --stan_config /etc/nats-streaming-server.conf
+ExecStart=/usr/local/bin/nats-streaming-server -sc /etc/nats-streaming-server.conf -ns {{ nats_streaming_nats_server_url }}
 
 [Install]
 WantedBy=multi-user.target
