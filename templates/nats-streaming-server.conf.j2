@@ -32,7 +32,7 @@ streaming: {
         max_inactivity: {{ nats_streaming_store_limits_max_inactivity }}
         {% if nats_streaming_store_limits_channels %}
         channels: {
-        {% for channel, store_limit in nats_streaming_store_limits_channels.iteritems() %}
+        {% for channel, store_limit in nats_streaming_store_limits_channels.items() %}
            "{{ channel }}": {
                max_subs: {{ store_limit.max_subs | default(omit) }}
                max_msgs: {{ store_limit.max_msgs | default(omit) }}
