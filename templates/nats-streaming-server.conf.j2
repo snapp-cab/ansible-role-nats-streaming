@@ -1,6 +1,9 @@
 #jinja2: trim_blocks: True, lstrip_blocks: True
 # {{ ansible_managed }}
 
+# HTTP monitoring port
+# http_port: 8222
+
 streaming: {
     # Cluster name
     cluster_id: {{ nats_streaming_cluster_id }}

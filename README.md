@@ -6,7 +6,7 @@ NATS Streaming is a data streaming system powered by NATS, and written in the Go
 
 ``` yaml
 # requirments.yaml
-- src: git@gitlab.snapp.ir:ansible-role/nats-streaming.git
+- src: git@gitlab.snapp.ir:nats/ansible-role-nats-streaming.git
   scm: git
   version: master
   name: nats-streaming
