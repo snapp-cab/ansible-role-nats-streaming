@@ -35,6 +35,9 @@ nats_streaming_cluster_node_id: "{{ ansible_hostname }}"
 nats_streaming_cluster_bootstrap: true
 nats_streaming_cluster_log_cache_size: 4096
 nats_streaming_cluster_sync: true
+
+nats_exporter_enabled: "true"
+nats_prometheus_exporter_version: "0.6.2"
 ```
 
 ## Example Playbook
@@ -44,6 +47,8 @@ nats_streaming_cluster_sync: true
   vars:
     nats_streaming_version: "0.18.0"
     nats_streaming_host_group: "some_servers"
+    nats_exporter_enabled: "true"
+    nats_prometheus_exporter_version: "0.6.2"
   roles:
     - nats-streaming
 ```

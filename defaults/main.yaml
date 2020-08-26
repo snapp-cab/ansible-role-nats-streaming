@@ -20,3 +20,6 @@ nats_streaming_file_options_auto_sync: "1m"
 nats_streaming_cluster_node_id: "{{ ansible_hostname }}"
 nats_streaming_cluster_log_cache_size: 4096
 nats_streaming_cluster_sync: true
+
+nats_exporter_enabled: "true"
+nats_prometheus_exporter_version: "0.6.2"
