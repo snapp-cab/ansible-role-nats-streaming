@@ -10,7 +10,7 @@ nats_streaming_store_limits_max_msgs: 1000000
 nats_streaming_store_limits_max_bytes: "1GB"
 nats_streaming_store_limits_max_age: "48h"
 nats_streaming_store_limits_max_inactivity: "72h"
-nats_streaming_store_limits_channels: []
+nats_streaming_store_limits_channels: {}
 
 nats_streaming_file_options_buffer_size: 16MB
 nats_streaming_file_options_parallel_recovery: 4
