@@ -48,7 +48,7 @@
 
 - name: Restart NATS Streaming service when its configuration changed
   debug:
-    msg: "Reload NATS Streaming service when its configuration changed"
+    msg: "Restart NATS Streaming service when its configuration changed"
   when: nats_streaming_server_conf_template.changed
   notify:
     - restart nats-streaming-server
