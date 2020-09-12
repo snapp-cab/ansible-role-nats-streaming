@@ -1,4 +1,5 @@
 # NATS Streaming Ansible Role
+
 [![Travis (.org)](https://img.shields.io/travis/com/snapp-cab/ansible-role-nats-streaming?logo=travis&style=flat-square)](https://travis-ci.com/github/snapp-cab/ansible-role-nats-streaming)
 
 NATS Streaming is a data streaming system powered by NATS, and written in the Go programming language.

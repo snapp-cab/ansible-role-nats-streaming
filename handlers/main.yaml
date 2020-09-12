@@ -13,10 +13,10 @@
   systemd:
     state: stopped
     daemon_reload: true
-    name: "nats-streaming-server"
+    name: nats-streaming-server
 
 - name: reload daemon nats-exporter
   systemd:
     state: stopped
     daemon_reload: true
-    name: "nats-exporter"
+    name: nats-exporter
