@@ -1,4 +1,4 @@
-nats_streaming_version: "0.18.0"
+nats_streaming_version: "0.24.1"
 nats_streaming_host_group: "streaming"
 
 nats_streaming_cluster_id: "snapp"
@@ -22,4 +22,4 @@ nats_streaming_cluster_log_cache_size: 4096
 nats_streaming_cluster_sync: true
 
 nats_exporter_enabled: "true"
-nats_prometheus_exporter_version: "0.6.2"
+nats_prometheus_exporter_version: "0.9.1"
