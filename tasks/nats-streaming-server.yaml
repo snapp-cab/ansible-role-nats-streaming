@@ -1,8 +1,4 @@
 ---
-- name: Gather the package facts
-  package_facts:
-    manager: apt
-
 - name: Install NATS Streaming package from the GitHub.
   apt:
     state: present

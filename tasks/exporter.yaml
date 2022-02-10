@@ -1,8 +1,4 @@
 ---
-- name: Gather the package facts
-  package_facts:
-    manager: apt
-
 - name: Install NATS Prometheus exporter package from the GitHub.
   apt:
     state: present
@@ -10,7 +6,6 @@
       v{{ nats_prometheus_exporter_version }}/\
       prometheus-nats-exporter-\
       v{{ nats_prometheus_exporter_version }}-linux-amd64.deb"
-  when: "'prometheus-nats-exporter' not in ansible_facts.packages"
 
 - name: Create the NATS Prometheus exporter user
   user:
