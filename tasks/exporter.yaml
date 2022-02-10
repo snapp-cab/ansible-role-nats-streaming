@@ -5,7 +5,7 @@
     deb: "https://github.com/nats-io/prometheus-nats-exporter/releases/download/\
       v{{ nats_prometheus_exporter_version }}/\
       prometheus-nats-exporter-\
-      v{{ nats_prometheus_exporter_version }}-linux-amd64.deb"
+      v{{ nats_prometheus_exporter_version }}-amd64.deb"
 
 - name: Create the NATS Prometheus exporter user
   user:
