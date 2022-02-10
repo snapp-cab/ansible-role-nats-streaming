@@ -9,7 +9,6 @@
     deb: "https://github.com/nats-io/nats-streaming-server/releases/download/\
     v{{ nats_streaming_version }}/\
     nats-streaming-server-v{{ nats_streaming_version }}-amd64.deb"
-  when: "'nats-streaming-server' not in ansible_facts.packages"
 
 - name: Create a directory for NATS Streaming
   file:
