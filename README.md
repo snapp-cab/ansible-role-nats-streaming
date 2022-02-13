@@ -1,12 +1,12 @@
 # NATS Streaming Ansible Role
 
-[![Travis (.org)](https://img.shields.io/travis/com/snapp-cab/ansible-role-nats-streaming?logo=travis&style=flat-square)](https://travis-ci.com/github/snapp-cab/ansible-role-nats-streaming)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/snapp-incubator/ansible-role-nats-streaming/ci?label=ci&logo=github&style=flat-square)
 
 NATS Streaming is a data streaming system powered by NATS, and written in the Go programming language.
 
 ## Installation
 
-``` yaml
+```yaml
 # requirments.yaml
 - src: git@github.com:snapp-cab/ansible-role-nats-streaming.git
   scm: git
@@ -16,7 +16,7 @@ NATS Streaming is a data streaming system powered by NATS, and written in the Go
 
 ## Role Variables
 
-``` yaml
+```yaml
 nats_streaming_version: "0.18.0"
 nats_streaming_host_group: "streaming"
 
@@ -44,7 +44,7 @@ nats_prometheus_exporter_version: "0.6.2"
 
 ## Example Playbook
 
-``` yaml
+```yaml
 - hosts: some_servers
   vars:
     nats_streaming_version: "0.18.0"
