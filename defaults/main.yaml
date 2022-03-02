@@ -1,4 +1,5 @@
-nats_streaming_version: "0.24.1"
+---
+nats_streaming_version: "0.24.2"
 nats_streaming_host_group: "streaming"
 
 nats_streaming_cluster_id: "snapp"
